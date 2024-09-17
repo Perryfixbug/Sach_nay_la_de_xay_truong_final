@@ -7,10 +7,12 @@ from db import db
 from route.home import home
 from route.cart_route import cart_route
 from route.account_route import acc_route
+from os import path
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] ='mysql+pymysql://root:0123456789@localhost/sce_db?charset=utf8mb4'
+    # app.config['SQLALCHEMY_DATABASE_URI'] ='mysql+pymysql://root:0123456789@localhost/sce_db?charset=utf8mb4'
+    app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///user.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
  
@@ -19,9 +21,14 @@ def create_app():
     app.register_blueprint(cart_route)
     app.register_blueprint(home)
     app.register_blueprint(acc_route)
+
     return app
 
 
 if __name__ == '__main__':
     app = create_app()
+
+    with app.app_context():
+        db.create_all()
+
     app.run(debug= True, port= 5000)

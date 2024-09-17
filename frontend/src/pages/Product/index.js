@@ -9,6 +9,7 @@ import Footer from '../../components/Footer'
 import { addToCart } from '../../components/CartAPI'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
+import NavBar from '../../components/NavBar'
 
 const Product = () => {
   const [item, setItem] = useState({})
@@ -43,27 +44,60 @@ const Product = () => {
       className={styles.product}
     >
       <BackTo />
-      <div className={styles.productImage}>
-        <img src={images[item.img]} alt='#'/>
-      </div>
-      
-      <div className={styles.name}>
-        <h2>{item.name}</h2>
-        <h3 className='sub-accent-color'>{item.price}</h3>
-      </div>
-      <div className={styles.button_field}>
-        <button 
-          className={clsx(styles.add_cart_button, 'clickEffect')}
-          onClick={()=>handleAddToCart(item)}
-        >
-          <img src={assets.add_cart_accent} className='icon' />
-        </button>
-        <button className={clsx(styles.buy_button, 'clickEffect')}>Mua hàng</button>
+      <div className={styles.product_mobile}>
+        <div className={styles.productImage}>
+          <img src={images[item.img]} alt='#'/>
+        </div>
+        
+        <div className={styles.name}>
+          <h2>{item.name}</h2>
+          <h3 className='sub-accent-color'>{item.price}</h3>
+        </div>
+        <div className={styles.button_field}>
+          <button 
+            className={clsx(styles.add_cart_button, 'clickEffect')}
+            onClick={()=>handleAddToCart(item)}
+          >
+            <img src={assets.add_cart_accent} className='icon' />
+          </button>
+          <button className={clsx(styles.buy_button, 'clickEffect')}>Mua hàng</button>
+        </div>
+        <div className={styles.detail}>
+            <h2>Mô tả sản phẩm</h2>
+            <p>{item.detail}</p>
+        </div>
       </div>
 
-      <div className={styles.detail}>
-          <h2>Mô tả sản phẩm</h2>
-          <p>{item.detail}</p>
+      {/* responsive cho desktop*/}
+      <div className={styles.product_desktop}>
+        {/* Ảnh, tên, giá, nút mua */}
+        <div className='d-flex'>
+          <div className={styles.productImage}>
+            <img src={images[item.img]} alt='#'/>
+          </div>
+          <div className={styles.product_desktop_side}>
+            <div className={styles.name}>
+              <h2>{item.name}</h2>
+              <h3 className='sub-accent-color'>{item.price}</h3>
+            </div>
+            <div className={styles.button_field}>
+              <button 
+                className={clsx(styles.add_cart_button, 'clickEffect')}
+                onClick={()=>handleAddToCart(item)}
+              >
+                <img src={assets.add_cart_accent} className='icon' />
+              </button>
+              <button className={clsx(styles.buy_button, 'clickEffect')}>Mua hàng</button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mô tả sản phẩm */}
+        <div className={styles.detail}>
+            <h2>Mô tả sản phẩm</h2>
+            <p>{item.detail}</p>
+        </div>
+        
       </div>
       <Footer />
     </motion.div>

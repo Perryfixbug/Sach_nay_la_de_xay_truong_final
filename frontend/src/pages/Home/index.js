@@ -5,6 +5,7 @@ import Filter from '../../components/Filter'
 import ProductList from '../../components/ProductList'
 import { motion } from 'framer-motion'
 import styles from './Home.module.css'
+import Footer from '../../components/Footer'
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <Hero />
       <NavBar />
       <ProductList />
+      <Footer />
     </motion.div>
   )
 }

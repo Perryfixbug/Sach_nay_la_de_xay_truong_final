@@ -1,0 +1,10 @@
+.back_to{
+    display: flex;
+    
+}
+
+@media only screen and (min-width: 900px) {
+    .back_to{
+        display: none;
+    }
+}

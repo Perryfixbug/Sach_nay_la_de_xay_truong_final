@@ -3,6 +3,7 @@ from sqlalchemy import Integer, String, Column, Float, DATETIME, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
+
 class Product(db.Model):
     id = Column(String(20), primary_key=True)
     name = Column(String(100), nullable=False)
@@ -28,7 +29,6 @@ class Product(db.Model):
 
 
 class PCart(db.Model):
-
     id = Column(String(20), ForeignKey('product.id'), primary_key=True)
     date = Column(DATETIME, default=datetime.now)
     num = Column(Integer, default=1)
@@ -51,7 +51,7 @@ class PCart(db.Model):
             return 'Khong tim thay san pham trong DSSP'
 
 class User(db.Model):
-    id = Column(String(20), primary_key= True, autoincrement= True)
+    id = Column(Integer, primary_key= True, autoincrement= True)
     username = Column(String(100),nullable=  False, unique= True)
     password = Column(String(100),nullable=  False)
     email = Column(String(50),nullable=  True)

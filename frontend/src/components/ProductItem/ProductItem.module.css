@@ -95,7 +95,6 @@
         border: 0.5px solid #bbbbbb;
         width: 220px;
         height: 100%;
-        margin: 0 24px;
         position: relative;
         
         & .info{

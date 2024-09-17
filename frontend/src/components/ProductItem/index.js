@@ -21,7 +21,7 @@ const ProductItem = {
 
         return (
             //Product Item in list
-            <motion.div className={clsx(styles.productItems)}>
+            <motion.div className={clsx(styles.productItems, 'hoverEffect')}>
                 <Link to={`/product/${product.id}`} element={<Product id={product.id}/>}  >
                     <div>
                         <div className='d-flex-center'><img src={[images[product.img]]} className={styles.product_img}/></div>
@@ -33,19 +33,19 @@ const ProductItem = {
                 </Link>
                     <img src={assets.add_cart_accent} 
                     onClick={()=>handleAddToCart(product)}
-                    className={clsx(styles.add_cart_mobile, 'clickEffect')}/>
+                    className={clsx(styles.add_cart_mobile)}/>
                     <div 
-                        className={styles.add_cart_desktop}
+                        className={clsx(styles.add_cart_desktop, 'hoverEffect')}
                         onClick={()=>handleAddToCart(product)}
                     >Thêm vào giỏ</div>
 
-                    {/* {display && <motion.div 
+                    {display && <motion.div 
                         initial={{x: '150px',  y: 0, opacity: 0}}
-                        animate={{x: '150px', y: '-60px', opacity: 100}}
-                        exit={{x:'150px', y: '-100px', opacity: 0}}
+                        animate={{x: '150px', y: '-50px', opacity: 100}}
+                        exit={{x:'150px', y: '-80px', opacity: 0}}
                         className={styles.addEffect}
                     >+1
-                    </motion.div>} */}
+                    </motion.div>}
             </motion.div>
         )
     },

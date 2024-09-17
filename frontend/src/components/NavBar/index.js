@@ -15,20 +15,6 @@ const NavBar = () => {
   const [value, setValue] = useState('')
   return (
     <>
-      {/* <div className={styles.nav}>
-          <Link to='/nav' element={<NavPage />} ><img src={assets.nav_icon} className='icon' alt='#'/></Link>
-          <div className={styles.search_site}>
-            <input 
-              className={styles.search} 
-              placeholder='Tìm kiếm nhanh' 
-              value={value}
-              onChange={(e)=>setValue(e.target.value)}
-            />
-            {value && <Search value={value} type='fast_search' />}
-          </div>
-          <Link to='/cart' element={<Cart />}><img src={assets.cart_icon} className='icon' alt='#'/></Link>
-          <img src={assets.heart_icon} className='icon' alt='#'/>
-      </div> */}
       <div className={styles.nav_desktop}>
           <Link to='/about' element={<About />} className='d-flex-center'>
             <img src={assets.heart_black} className='icon'/>

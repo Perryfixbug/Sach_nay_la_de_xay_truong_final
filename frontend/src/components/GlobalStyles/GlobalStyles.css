@@ -70,5 +70,6 @@ a{
 .hoverEffect:hover{
     transform: scale(1.05);
     transition: transform 0.15s ease-out;
+    box-shadow: 2px 2px 4px #d1d1d1;
 }
 

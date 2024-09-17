@@ -19,7 +19,7 @@ const ProductList = () => {
       e.preventDefault();
       const container = containerRefs.current[index];
       if (container) {
-        const scrollSpeed = 5 //scrollSpeed giảm dần, lấy deltaY/scrollSpeed
+        const scrollSpeed = 3.5 //scrollSpeed giảm dần, lấy deltaY/scrollSpeed
         const maxScroll = container.scrollWidth - container.clientWidth;     //méo hiểu lắm
         container.scrollLeft = Math.max(Math.min(container.scrollLeft + e.deltaY/scrollSpeed, maxScroll), 0);
       }
@@ -42,7 +42,8 @@ const ProductList = () => {
   return (
     <div className={styles.productContainer}>
       {nav.map((title, title_key) => {
-        const list = products.filter(cur => cur.category.toLowerCase() === title.toLowerCase() || title === 'NỔI BẬT' && cur.isPopular)
+        const list = products
+        // const list = products.filter(cur => cur.category.toLowerCase() === title.toLowerCase() || title === 'NỔI BẬT' && cur.isPopular)
         return (
           list.length !== 0 ? (
             <div key={title_key}>

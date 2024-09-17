@@ -1,12 +1,14 @@
 .product{
     display: flex;
     flex-direction: column;
+    margin: 24px;
 }
+
 
 .productImage{
     display: flex;
     justify-content: center;
-    margin: 30px;
+    padding: 30px;
 }
 
 .productImage img{
@@ -18,17 +20,17 @@
 
 .name{
     font-size: 1.2rem;
-    margin: 10px
 }
 
 .button_field{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 
 .buy_button{
-    width: 60%;
+    width: 70%;
+    min-width: 200px;
     padding: 10px;
     color: #fff;
     background-color: var(--accent-color);
@@ -40,26 +42,50 @@
 }
 
 .add_cart_button{
+    min-width: 60px;
     width: 20%;
     padding: 10px;
     border-radius: 30px;
     border: 3px solid #333;
     box-sizing: border-box;
+    background: #f7f7f7;
 }
 
 .detail{
     font-size: 1rem;
-    margin: 10px;
 }
 
-@media only screen and (min-width: 600px) {
-    .productImage img{
-        width: 40%;
+.product_desktop{
+    display: none;
+}
+
+
+@media only screen and (min-width: 900px) {
+    .product_mobile{
+        display: none;
     }
-}
-
-@media only screen and (min-width: 800px) {
-    .productImage img{
-        width: 30%;
+    .product_desktop{
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & .productImage{
+            max-width: 500px;
+        }
+        & .product_desktop_side{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px;
+            & .name{
+                display: flex;
+                height: 80%;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
+        & .detail{
+            width: 70%;
+        }
     }
 }

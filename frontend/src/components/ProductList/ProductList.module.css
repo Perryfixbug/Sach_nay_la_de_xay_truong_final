@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: space-around;  
     padding: 10px;
+    box-sizing: border-box;
 }
 
 .out_of_order{
@@ -52,14 +53,18 @@
         margin: 48px 180px;
         height: 360px;
         width: 75%;
-        display: block;
-        white-space: nowrap;
-        overflow-x: scroll;  /* Ensure scrolling still works */
-        scrollbar-width: none;  
+        grid-auto-flow: column;
+        grid-template-columns: repeat(4, 20%);
+        grid-auto-rows: auto;
+        display: grid;
+        gap: 48px;
+        overflow-x: scroll;
+        /* overflow: auto;  */
+        /* scrollbar-width: none;  
         -ms-overflow-style: none;  
         &::-webkit-scrollbar {  
             display: none;
-          }
+          } */
         & .more_desktop{
             display: inline-block;
         }
