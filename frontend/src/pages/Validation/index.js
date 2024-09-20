@@ -3,6 +3,7 @@ import styles from './Validation.module.css'
 import { motion } from 'framer-motion'
 import clsx from 'clsx'
 import BackTo from '../../components/BackTo'
+import Title from '../../components/Title'
 
 const Validation = () => {
     const [type, setType] = useState('Login')
@@ -11,7 +12,7 @@ const Validation = () => {
         Login(){
             return(
                 <div className={clsx('d-flex-column', styles.form)}>
-                    <div className={styles.title}>{type}</div>
+                    <Title title='Login'/>
                     <div className= {clsx ('d-flex-column', styles.input_site)}>
                         <label htmlFor='username'>Nhập email hoặc số điện thoại</label>
                         <input type='text' name='usenrname' id='username' placeholder='Email or phone...'/>
@@ -19,8 +20,8 @@ const Validation = () => {
                         <input type='password' name='password' id='password' placeholder='Password'/>
                     </div>
                     <div 
-                        style={{width: '60%', display: 'flex', justifyContent: 'space-between'}}
-                    
+                        
+                        className={styles.forgot}
                     >
                         <span style={{cursor: 'pointer'}}>Nhớ</span>
                         <span style={{textDecoration: 'underline', cursor: 'pointer'}}>Quên mật khẩu</span>
@@ -36,7 +37,7 @@ const Validation = () => {
         Signup(){
             return(
                 <div className={clsx('d-flex-column', styles.form)}>
-                    <div className={styles.title}>{type}</div>
+                    <Title title='Signup'/>
                     <div className= {clsx ('d-flex-column', styles.input_site)}>
                         <label htmlFor='email_phone'>Nhập email hoặc số điện thoại</label>
                         <input type='text' name='email_phone' id='email_phone' placeholder='Email or phone...'/>
@@ -60,8 +61,6 @@ const Validation = () => {
     const ComponentForm = Form[type]
 
     return (
-    <>
-        <BackTo />
         <motion.div 
             initial={{x: -100, opacity: 0}}
             animate={{x:0, opacity: 1}}
@@ -73,7 +72,6 @@ const Validation = () => {
         >   
             <ComponentForm />
         </motion.div>
-    </>
   )
 }
 

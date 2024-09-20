@@ -1,7 +1,7 @@
 import axios from 'axios';
 //tất cả đều dùng thư viện axios để truy cập các phương thức của http
 
-const API_URL = 'http://localhost:8000/cart'; 
+const API_URL = 'http://127.0.0.1:5000/cart'; 
 
 //sử dụng async thay cho promise
 //lấy dữ liệu từ giỏ hàng

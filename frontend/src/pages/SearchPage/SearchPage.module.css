@@ -1,26 +1,33 @@
 .search_field{
-    margin-top: 20px;
     display: flex;
     width: 100%;
     position: relative;
     gap: 10px;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .search{
     margin-left: 20px;
-    width: 70%;
-    height: 40px;
+    width: 80%;
+    height: 50px;
     background-color: #f8f8f8;
     border: 3px solid #333;
-    border-radius: 5px;
+    border-radius: 25px;
     padding: 5px;
+    padding-left: 10px;
+    font-size: 1rem;
     box-sizing: border-box;
     position: relative;
     outline: none;
 }
 .search:focus{
     border: 3px solid var(--sub-accent-color);
-    transform: scale(1.008);
+}
+
+::placeholder{
+    font-size: 1rem;
 }
 
 
@@ -28,4 +35,10 @@
     width: 35px;
     height: 35px;
     object-fit: contain;
+}
+
+@media only screen and (min-width: 900px) {
+    .search_field{
+        width: 50%;
+    }
 }

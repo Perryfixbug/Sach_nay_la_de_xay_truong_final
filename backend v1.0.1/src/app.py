@@ -11,6 +11,7 @@ from os import path
 
 def create_app():
     app = Flask(__name__)
+    
     # app.config['SQLALCHEMY_DATABASE_URI'] ='mysql+pymysql://root:0123456789@localhost/sce_db?charset=utf8mb4'
     app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///user.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -30,5 +31,6 @@ if __name__ == '__main__':
 
     with app.app_context():
         db.create_all()
+    CORS(app)
 
     app.run(debug= True, port= 5000)

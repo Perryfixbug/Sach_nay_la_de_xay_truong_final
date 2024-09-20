@@ -2,6 +2,7 @@ from flask import jsonify,request
 from model import User
 from flask_sqlalchemy import SQLAlchemy
 import hashlib
+
 class User_option:
     def __init__(self, db: SQLAlchemy) -> None:
         self.db = db

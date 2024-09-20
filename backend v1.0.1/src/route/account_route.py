@@ -8,5 +8,5 @@ def data_user(user_id = None):
         return 'Hãy đăng nhập vào tài khoản của bạn'
     return current_app.config['AccOption'].getin4()
 @acc_route.route('/account/register', methods=['post'])
-def regester():
+def register():
     return current_app.config['AccOption'].add_user()

@@ -1,0 +1,11 @@
+.title{
+    /* margin: 10px; */
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--sub-accent-color);
+    background: linear-gradient(to right, #ff5ff2, #7bfe95); 
+    background-clip: text;  /* Chỉ áp dụng gradient cho phần text */
+    -webkit-text-fill-color: transparent; /* Làm chữ trong suốt để thấy được gradient */
+}

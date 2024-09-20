@@ -55,17 +55,7 @@
       "isPopular": false
     }
   ],
-  "cart": [
-    {
-      "id": "3",
-      "name": "300 bài code thiếu nhi",
-      "img": "b300_bai_code_thieu_nhi",
-      "price": "180.000đ",
-      "detail": "'300 bài code thiếu nhi' là một cuốn sách tuyệt vời dành cho các bậc phụ huynh và giáo viên muốn giới thiệu lập trình cho trẻ em.\n\nCuốn sách này cung cấp một loạt các bài tập lập trình từ đơn giản đến phức tạp, giúp trẻ phát triển tư duy logic và kỹ năng giải quyết vấn đề.\n\nCác bài tập được thiết kế một cách sinh động và dễ hiểu, sử dụng ngôn ngữ lập trình phổ biến như Scratch hoặc Python.\nCuốn sách không chỉ giúp trẻ nắm bắt các khái niệm cơ bản về lập trình mà còn khơi gợi niềm đam mê với công nghệ thông tin từ khi còn nhỏ.",
-      "category": "Khoa học",
-      "isPopular": true
-    }
-  ],
+  "cart": [],
   "account": [
     {
       "id": "1",

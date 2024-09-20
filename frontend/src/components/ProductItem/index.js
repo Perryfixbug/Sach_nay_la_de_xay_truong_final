@@ -84,7 +84,7 @@ const ProductItem = {
                     </div>
                 </Link>
                 <img 
-                    src={assets.multiply_icon} style={{width: '30px', height: '30px', position: 'absolute', right: '20px', top: 0}}
+                    src={assets.multiply_icon} style={{width: '30px', height: '30px', position: 'absolute', right: 200, top: 25}}
                     onClick={()=> handleRemoveFromCart(product.id)}
                 />
             </motion.div>

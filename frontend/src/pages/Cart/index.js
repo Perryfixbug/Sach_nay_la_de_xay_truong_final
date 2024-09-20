@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import ProductItem from '../../components/ProductItem';
 import styles from './Cart.module.css'
 import { DataContext } from '../../context/DataProvider';
+import Title from '../../components/Title';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -47,7 +48,7 @@ const Cart = () => {
       }}
       exit={{y: -100, opacity: 0}}
     >
-      <BackTo />
+      <Title title='Cart'/>
       <div className={styles.cart_list} >
         {cart.map((cur, index)=>
           <ProductItem.Cart 

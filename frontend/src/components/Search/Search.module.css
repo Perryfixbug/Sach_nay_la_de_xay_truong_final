@@ -20,5 +20,13 @@
 }
 
 .search{
-    margin: 20px;
+    margin: auto;
+    width: 100%;
+}
+
+@media only screen and (min-width: 900px) {
+    .search{
+        margin: auto;
+        width: 60%;
+    }
 }

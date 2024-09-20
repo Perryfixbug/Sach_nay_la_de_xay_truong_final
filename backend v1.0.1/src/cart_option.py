@@ -12,7 +12,7 @@ class CartOption:
         if p_id:
             pc = pc.filter(PCart.id.__eq__(p_id))
         products = pc.all()
-        return jsonify([p.to_dict() for p in products]) if len(products) else 'Khong thay san pham'
+        return jsonify([p.to_dict() for p in products])
     
     def add_Cart(self,product_id = None):
         try:

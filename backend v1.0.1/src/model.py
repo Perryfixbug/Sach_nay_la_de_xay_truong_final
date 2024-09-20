@@ -3,7 +3,6 @@ from sqlalchemy import Integer, String, Column, Float, DATETIME, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
-
 class Product(db.Model):
     id = Column(String(20), primary_key=True)
     name = Column(String(100), nullable=False)
@@ -27,10 +26,9 @@ class Product(db.Model):
         }
 
 
-
 class PCart(db.Model):
     id = Column(String(20), ForeignKey('product.id'), primary_key=True)
-    date = Column(DATETIME, default=datetime.now)
+    date = Column(String(20), default=datetime.now)
     num = Column(Integer, default=1)
     product = relationship('Product', back_populates='pcarts', lazy = True)
     def to_dict(self):
@@ -47,8 +45,7 @@ class PCart(db.Model):
                 'ptype': product_info.ptype,
                 'num': self.num
             }
-        else:
-            return 'Khong tim thay san pham trong DSSP'
+        return {}
 
 class User(db.Model):
     id = Column(Integer, primary_key= True, autoincrement= True)

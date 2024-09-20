@@ -3,12 +3,17 @@ import Search from '../../components/Search'
 import styles from './SearchPage.module.css'
 import { assets } from '../../assets/assets'
 import clsx from 'clsx'
-import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import Title from '../../components/Title'
 
 const SearchPage = () => {
+    
+    const [heart, setHeart] = useState(false)
     const [value, setValue] = useState('')
-    const navigate = useNavigate()
+
+    const handleClickHeart = () => {
+        setHeart(!heart)
+    }
     return (
         <motion.div
             initial={{x: -100, opacity: 0}}
@@ -17,7 +22,8 @@ const SearchPage = () => {
                 duration: 0.2,
               }}
             exit={{x: 100, opacity: 0}}
-        >
+        >   
+            <Title title='Search'/>
             <div 
                 className={clsx(styles.search_field)}>
                 <input 
@@ -26,11 +32,15 @@ const SearchPage = () => {
                     value={value}
                     onChange={(e)=>setValue(e.target.value)}
                 />
-                <img src={assets.heart_icon} />
                 <img 
+                    src={heart ? assets.heart_accent : assets.heart_black}
+                    onClick={()=>handleClickHeart()}
+                    
+                />
+                {/* <img 
                     src={assets.back_page} 
                     onClick={()=>navigate(-1)}
-                />
+                /> */}
             </div>
             {value && <Search value={value}/>}
         </motion.div>
