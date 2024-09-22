@@ -6,11 +6,11 @@ from datetime import datetime
 class Product(db.Model):
     id = Column(String(20), primary_key=True)
     name = Column(String(100), nullable=False)
-    img = Column(String(100), nullable=False)
+    img = Column(String(100), nullable=True)
     price = Column(Integer, nullable=False)
     author = Column(String(50), nullable=False)
     detail = Column(String(200), nullable=True)
-    ptype = Column(String(50), nullable=False)
+    category = Column(String(50), nullable=False)
     stock = Column(Integer, default=1)
     pcarts = relationship('PCart', back_populates='product', lazy = True)
     def to_dict(self):
@@ -21,7 +21,7 @@ class Product(db.Model):
             'price':self.price,
             'author':self.author,
             'detail':self.detail,
-            'ptype': self.ptype,
+            'category': self.category,
             'stock': self.stock
         }
 
