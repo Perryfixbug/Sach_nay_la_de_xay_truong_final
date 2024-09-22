@@ -16,12 +16,6 @@ class CartOption:
     
     def add_Cart(self,product_id = None):
         try:
-            if not product_id:
-                data = request.get_json()
-                if not data or 'id' not in data:
-                    return jsonify({"error": "Invalid input"}), 400
-                
-                product_id = data['id']
             pc = PCart.query.get(product_id)
             if pc:
                 pc.num += 1

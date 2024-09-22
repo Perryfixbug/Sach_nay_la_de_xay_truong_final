@@ -15,9 +15,9 @@ export const getCartItems = async () => {
 };
 
 //Thêm vào giỏ hàng
-export const addToCart = async (product) => {
+export const addToCart = async (productId) => {
   try {
-    const response = await axios.post(API_URL, product);
+    const response = await axios.post(API_URL, {productId});
     return response.data;
   } catch (error) {
     console.error('Failed to add to cart:', error);

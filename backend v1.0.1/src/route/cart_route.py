@@ -2,8 +2,6 @@ from flask import request, jsonify, Blueprint, current_app
 
 cart_route = Blueprint('cart_route', __name__)
 
-
-
 @cart_route.route('/cart', methods=['GET', 'POST', 'DELETE'])
 def Cartpage():
     return current_app.config['cartOption'].get_Cart()

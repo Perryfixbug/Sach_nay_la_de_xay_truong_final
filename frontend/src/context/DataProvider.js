@@ -12,7 +12,7 @@ const DataProvider = ({children}) => {
   const [accounts, setAccounts] = useState([])
 
   useEffect(()=>{
-    fetch("http://localhost:8000/product")
+    fetch("http://127.0.0.1:5000/product")
       .then(res=>res.json())
       .then(data=>{
         setProducts(data);

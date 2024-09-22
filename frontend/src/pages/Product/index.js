@@ -3,7 +3,6 @@ import BackTo from '../../components/BackTo'
 import styles from './Product.module.css'
 import { DataContext } from '../../context/DataProvider'
 import { assets } from '../../assets/assets'
-import { images } from '../../image/image'
 import { useParams } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import { addToCart } from '../../components/CartAPI'
@@ -46,7 +45,7 @@ const Product = () => {
       <BackTo />
       <div className={styles.product_mobile}>
         <div className={styles.productImage}>
-          <img src={images[item.img]} alt='#'/>
+          <img src={`http://localhost:5000/product_image/${item.id}`} alt='#'/>
         </div>
         
         <div className={styles.name}>
@@ -73,7 +72,7 @@ const Product = () => {
         {/* Ảnh, tên, giá, nút mua */}
         <div className='d-flex'>
           <div className={styles.productImage}>
-            <img src={images[item.img]} alt='#'/>
+            <img src={`http://localhost:5000/product_image/${item.id}`} alt='#'/>
           </div>
           <div className={styles.product_desktop_side}>
             <div className={styles.name}>
