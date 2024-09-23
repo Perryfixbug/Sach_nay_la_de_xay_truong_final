@@ -73,7 +73,7 @@ const ProductItem = {
                 className='pos_relative'>
                 <Link to={`/product/${product.id}`} element={<Product id={product.id}/>}> 
                     <div  className={styles.productItem_cart}>
-                        <img src={`http://localhost:5000/image_src/${product.id}`} />
+                        <img src={`http://localhost:5000/product_image/${product.id}`} />
                         <div className={styles.info}>
                             <h2 className={styles.name}>{product.name}</h2>
                             <h2 className={styles.price}>{product.price}</h2>
