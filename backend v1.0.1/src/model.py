@@ -6,7 +6,7 @@ from datetime import datetime
 class Product(db.Model):
     id = Column(String(20), primary_key=True)
     name = Column(String(100), nullable=False)
-    img = Column(String(100), nullable=False)
+    img = Column(String(100), nullable=True)
     price = Column(Integer, nullable=False)
     author = Column(String(50), nullable=False)
     detail = Column(String(200), nullable=True)

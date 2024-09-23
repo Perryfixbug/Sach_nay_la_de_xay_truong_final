@@ -20,7 +20,11 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///user.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
+<<<<<<< HEAD
     app.config['Prod'] = Prod(db = db)
+=======
+
+>>>>>>> b5a2fd7c7f9d91a5351eeb0a6bb44b03aef6bb1a
     app.config['cartOption'] = CartOption(db=db)
     app.config['AccOption'] = User_option(db=db)
     app.register_blueprint(product_route)
