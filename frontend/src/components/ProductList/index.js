@@ -42,8 +42,8 @@ const ProductList = () => {
   return (
     <div className={styles.productContainer}>
       {nav.map((title, title_key) => {
-        const list = products
-        // const list = products.filter(cur => cur.category.toLowerCase() === title.toLowerCase() || title === 'NỔI BẬT' && cur.isPopular)
+        // const list = products
+        const list = products.filter(cur => cur.category.toLowerCase() === title.toLowerCase() || title === 'NỔI BẬT' && cur.isPopular)
         return (
           list.length !== 0 ? (
             <div key={title_key}>

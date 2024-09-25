@@ -28,8 +28,8 @@ const Product = () => {
     fetchProductData()
   }, [productId, products])
 
-  const handleAddToCart = (product)=>{
-    addToCart(product)  
+  const handleAddToCart = (productId)=>{
+    addToCart(productId)  
   }
   
   return (
@@ -50,12 +50,12 @@ const Product = () => {
         
         <div className={styles.name}>
           <h2>{item.name}</h2>
-          <h3 className='sub-accent-color'>{item.price}</h3>
+          <h3 className='sub-accent-color'>{`${item.price}đ`}</h3>
         </div>
         <div className={styles.button_field}>
           <button 
             className={clsx(styles.add_cart_button, 'clickEffect')}
-            onClick={()=>handleAddToCart(item)}
+            onClick={()=>handleAddToCart(item.id)}
           >
             <img src={assets.add_cart_accent} className='icon' />
           </button>
@@ -77,12 +77,12 @@ const Product = () => {
           <div className={styles.product_desktop_side}>
             <div className={styles.name}>
               <h2>{item.name}</h2>
-              <h3 className='sub-accent-color'>{item.price}</h3>
+              <h3 className='sub-accent-color'>{`${item.price}đ`}</h3>
             </div>
             <div className={styles.button_field}>
               <button 
                 className={clsx(styles.add_cart_button, 'clickEffect')}
-                onClick={()=>handleAddToCart(item)}
+                onClick={()=>handleAddToCart(item.id)}
               >
                 <img src={assets.add_cart_accent} className='icon' />
               </button>

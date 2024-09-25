@@ -18,6 +18,7 @@ export const getCartItems = async () => {
 export const addToCart = async (productId) => {
   try {
     const response = await axios.post(API_URL, {productId});
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error('Failed to add to cart:', error);

@@ -11,7 +11,7 @@ const ProductItem = {
     List({ product}){
         const handleAddToCart = (productId)=>{
             addToCart(productId)
-            setDisplay(true)
+            setDisplay(true)    
             setTimeout(()=>{
                 setDisplay(false)
             }, 1000) //sau 1 giây tự xóa hiệu ứng +1
@@ -26,7 +26,7 @@ const ProductItem = {
                         <div className='d-flex-center'><img src={`http://localhost:5000/product_image/${product.id}`} className={styles.product_img}/></div>
                         <div className={styles.info}>
                             <div><h2 className={styles.name}>{product.name}</h2></div>
-                            <div><h2 className={styles.price}>{product.price}</h2></div>
+                            <div><h2 className={styles.price}>{`${product.price}đ`}</h2></div>
                         </div>
                     </div>
                 </Link>
@@ -55,7 +55,7 @@ const ProductItem = {
                     <img src={`http://localhost:5000/product_image/${product.id}`} />
                     <div className={styles.info}>
                         <h2 className={styles.name}>{product.name}</h2>
-                        <h2 className={styles.price}>{product.price}</h2>
+                        <h2 className={styles.price}>{`${product.price}đ`}</h2>
                     </div>
                 </div>
             </Link>
@@ -71,19 +71,20 @@ const ProductItem = {
             <>
             {inCart && <motion.div 
                 className='pos_relative'>
-                <Link to={`/product/${product.id}`} element={<Product id={product.id}/>}> 
                     <div  className={styles.productItem_cart}>
-                        <img src={`http://localhost:5000/product_image/${product.id}`} />
+                        <img src={`http://localhost:5000/image_src/${product.id}`} />
                         <div className={styles.info}>
                             <h2 className={styles.name}>{product.name}</h2>
-                            <h2 className={styles.price}>{product.price}</h2>
+                            <h2 className={styles.price}>{`${product.price}đ`}</h2> 
                             <strong className={styles.date}>Ngày thêm: {product.date}</strong>
                             <strong className={styles.quantity}>Số lượng: {product.quantity}</strong>
+                            <button className={clsx(styles.buy_button, 'clickEffect')}>Mua hàng</button>
                         </div>
                     </div>
-                </Link>
+                
                 <img 
-                    src={assets.multiply_icon} style={{width: '30px', height: '30px', position: 'absolute', right: 200, top: 25}}
+                    src={assets.multiply_icon}
+                    className={styles.multiply_icon}
                     onClick={()=> handleRemoveFromCart(product.id)}
                 />
             </motion.div>

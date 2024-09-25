@@ -1,12 +1,11 @@
 from flask import request, jsonify, Blueprint, current_app
 acc_route = Blueprint('acc_route', __name__)
 
-@acc_route.route('/account', defaults={'user_id': None}, methods=['GET', 'POST', 'DELETE'])
-@acc_route.route('/account/<user_id>', methods=['get'])
-def data_user(user_id = None):
-    if not user_id: 
-        return 'Hãy đăng nhập vào tài khoản của bạn'
-    return current_app.config['AccOption'].getin4()
-@acc_route.route('/account/register', methods=['post'])
-def register():
-    return current_app.config['AccOption'].add_user()
+@acc_route.route('/account', methods=['GET', 'POST', 'DELETE'])
+def userpage():
+    if request.method == 'POST':
+        return current_app.config['AccOption'].add_user()
+    if request.method == 'GET':
+        return current_app.config['AccOption'].login()
+    if request.method == 'DELETE':
+        return current_app.config['AccOption'].delete_user()
