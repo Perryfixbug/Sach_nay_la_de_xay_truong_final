@@ -18,6 +18,7 @@ class CartOption:
             return jsonify({"error": str(e)}), 500
 
     def add_Cart(self, product_id=None):
+        print('chay add cart')
         try:
             if not product_id:
                 data = request.get_json()
@@ -34,6 +35,7 @@ class CartOption:
         except Exception as e:
             self.db.session.rollback()  
             return jsonify({"error": str(e)}), 500
+        
     def delete_Cart(self, product_id=None):
         try:
             if not product_id:

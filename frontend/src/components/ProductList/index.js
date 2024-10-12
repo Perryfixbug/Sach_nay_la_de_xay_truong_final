@@ -10,7 +10,7 @@ import { assets } from '../../assets/assets'
 
 const ProductList = () => {
   const [products] = useContext(DataContext)
-  const nav = ['NỔI BẬT', 'SÁCH BỘ', 'VĂN HỌC', 'KINH TẾ', 'TÂM LÍ HỌC', 'TIỂU THUYẾT', 'KHOA HỌC']
+  const nav = ['Comady', 'Adventure', 'Action', 'Fantasy', 'Sci Fi', 'Supernatural', 'Roman', 'Horror']
   
   const containerRefs = useRef([]);
 
@@ -43,7 +43,7 @@ const ProductList = () => {
     <div className={styles.productContainer}>
       {nav.map((title, title_key) => {
         // const list = products
-        const list = products.filter(cur => cur.category.toLowerCase() === title.toLowerCase() || title === 'NỔI BẬT' && cur.isPopular)
+        const list = products.filter(cur => cur.category.includes(title) || title === 'NỔI BẬT' && cur.isPopular)
         return (
           list.length !== 0 ? (
             <div key={title_key}>

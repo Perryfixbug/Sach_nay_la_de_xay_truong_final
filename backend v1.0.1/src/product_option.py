@@ -18,13 +18,17 @@ class Prod:
         order['date'] = datetime.today().date()
         return jsonify(order)
     
-    def get_Prod(self, prod_id = None):
+    def get_Prod(self, prod_id=None):
         gp = Product.query
         if prod_id:
-            gp = gp.filter(Product.id.__eq__(prod_id))
-        product = gp.all()
-        return jsonify([p.to_dict() for p in product])
-    
+            gp = gp.filter(Product.id.__eq__(prod_id)).first() 
+            if gp:
+                return jsonify(gp.to_dict())
+            else:
+                return jsonify({'error': 'Product not found'}), 404
+        products = gp.all()
+        return jsonify([p.to_dict() for p in products])
+
     def add_Prod(self):
         name = request.form.get('name')
         price = request.form.get('price')

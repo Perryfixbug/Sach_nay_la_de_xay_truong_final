@@ -1,0 +1,81 @@
+/* Định dạng cho nút toggle */
+.toggle-button {
+    font-size: 24px;
+    cursor: pointer;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: none;
+    border: none;
+    color: #111;
+  }
+  
+  /* Định dạng cho menu */
+  .menu {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Ban đầu ẩn bên trái ngoài màn hình */
+    background-color: #111;
+    overflow-x: hidden;
+    transition: left 0.5s ease; /* Hiệu ứng trượt khi mở menu */
+    padding-top: 60px;
+    z-index: 999; /* Đặt menu lên trên các phần tử khác */
+  }
+  
+  /* Khi menu mở */
+  .menu.open {
+    left: 0; /* Khi mở, menu trượt vào màn hình */
+  }
+  
+  /* Định dạng cho danh sách liên kết */
+  .menu ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu ul li {
+    padding: 10px 15px;
+  }
+  
+  .menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+  
+  .menu ul li a:hover {
+    color: #f1f1f1; /* Thêm hiệu ứng khi di chuột qua liên kết */
+  }
+  
+  /* Định dạng cho nút close */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 36px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+  }
+  
+  /* Định dạng cho backdrop để làm mờ nền khi menu mở */
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  .backdrop.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  

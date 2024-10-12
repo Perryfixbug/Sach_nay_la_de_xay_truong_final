@@ -17,7 +17,7 @@ const Product = () => {
   const [products] = useContext(DataContext)
   const fetchProductData = async()=>{
     products.map((cur)=>{
-      if (cur.id === productId){ 
+      if (cur.id === parseInt(productId)){ 
         setItem(cur)
         return null
       }

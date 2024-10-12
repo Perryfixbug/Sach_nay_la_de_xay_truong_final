@@ -10,6 +10,7 @@ import Validation from '../../pages/Validation'
 import NavPage from '../../pages/NavPage'
 import { Link } from 'react-router-dom'
 import { getCartItems } from '../CartAPI'
+import Menu from '../Menu'
 
 const NavBar = () => {
   const [value, setValue] = useState('')
@@ -34,10 +35,11 @@ const NavBar = () => {
               <Link to='/validation' element={<Validation />}><img src={assets.account_black} className='icon'/></Link>  
             </li>
             <li>
-              <Link className='d-flex-center'>
+              {/* <Link className='d-flex-center'>
                 <img src={assets.nav_icon} className='icon'/>
                 MENU
-              </Link>
+              </Link> */}
+              <Menu />
             </li>
           </ul>
       </div>
