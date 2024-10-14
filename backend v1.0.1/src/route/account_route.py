@@ -24,6 +24,7 @@ def handle_login():
         session.permanent = True  
         print('Giá trị uid lưu trong session:', session['uid'])
         current_app.config['cartOption'].get_usercart(session['uid'])
+        current_app.config['billOption'].get_user(session['uid'])
         return jsonify("Đăng nhập thành công"), err
     else:
         return jsonify(mes), err
