@@ -10,7 +10,7 @@ import { assets } from '../../assets/assets'
 
 const ProductList = () => {
   const [products] = useContext(DataContext)
-  const nav = ['Comady', 'Adventure', 'Action', 'Fantasy', 'Sci Fi', 'Supernatural', 'Roman', 'Horror']
+  const nav = ['Comedy', 'Adventure', 'Action', 'Fantasy', 'Sci Fi', 'Supernatural', 'Roman', 'Horror']
   
   const containerRefs = useRef([]);
 

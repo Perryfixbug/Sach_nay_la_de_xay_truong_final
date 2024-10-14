@@ -17,7 +17,7 @@ export const signupUser = async (userData) => {
 // Đăng nhập người dùng (Login)
 export const loginUser = async (email, password) => {
   try {
-    const response = await axios.post(API_URL, { email, password }); // Gửi request đến endpoint login
+    const response = await axios.post(API_URL, { email, password }, { withCredentials: true }); //Them vao { withCredentials: true }// Gửi request đến endpoint login
     console.log('User logged in successfully:', response.data);
     localStorage.setItem('access_token', response.data.access_token); // Lưu token nếu cần
     return response.data;

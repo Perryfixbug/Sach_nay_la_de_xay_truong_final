@@ -14,7 +14,6 @@ class Product(db.Model):
     stock = Column(Integer, default=1)
     #isPopular = Column(Boolean, default=False)
     pcarts = relationship('PCart', back_populates='product', lazy=True)
-    orders = relationship('Order', back_populates='product', lazy=True) 
     def to_dict(self):
         return {
             'id': self.id,
@@ -29,7 +28,9 @@ class Product(db.Model):
         }
 
 class PCart(db.Model):
-    id = Column(Integer, ForeignKey('product.id'), primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement= True)
+    u_id = Column(Integer, nullable= False)
+    p_id = Column(Integer, ForeignKey('product.id'), nullable= False)
     date = Column(String(20), default=str(datetime.today().date()))
     quantity = Column(Integer, default=1)
     product = relationship('Product', back_populates='pcarts', lazy=True)
@@ -37,7 +38,7 @@ class PCart(db.Model):
         if self.product:
             product_info = self.product
             return {
-                'id': self.id,
+                'id': self.p_id,
                 'name': product_info.name,
                 'img': product_info.img,
                 'price': product_info.price,
@@ -53,15 +54,15 @@ class User(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(100), nullable=False, unique=True)
     password = Column(BINARY, nullable=False)
-    email_phone = Column(String(50), nullable=True)
-    img = Column(String(100), default='user_default')
+    email = Column(String(50), nullable=True)
+    phone = Column(String(50), nullable=True)
+    img = Column(String(100), default='user_default.jpg')
     point = Column(Integer, nullable=False, default=0)
     birthday = Column(String(20), default='None')
     gender = Column(String(10), default='None')
     purchased = Column(Integer, nullable=False, default=0)
     donations = Column(Integer, nullable=False, default=0)
     role = Column(Integer, nullable=False, default=0)  # 0 is user, 1 is admin
-    orders = relationship('Order', back_populates='user', lazy=True) 
     def rank(self):
         if self.point > 5000:
             return "Kim Cuong"
@@ -77,7 +78,8 @@ class User(db.Model):
         return {
             'id': self.id,
             'username': self.username,
-            'email_phone': self.email_phone,
+            'email': self.email,
+            'phone': self.phone,
             'img': self.img,
             'point': self.point,
             'birthday': self.birthday,
@@ -87,51 +89,27 @@ class User(db.Model):
             'role': self.role
         }
 
-class Order(db.Model):  
+class Bill(db.Model):  
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    product_id = Column(Integer, ForeignKey('product.id'))
-    p_quantity = Column(Integer, default=1)
+    user_id = Column(Integer, nullable= False)
+    orders = Column(String(300), nullable=False)
     orderdate = Column(String(20), default=str(datetime.today().date()))
     method = Column(String(20), default='truc tiep') 
-    duedate = Column(String(20), default=str(datetime.today().date() + timedelta(days=7))) 
     status = Column(Integer, default=0)  # 0: not received, 1: received, 2: overdue
     recipient = Column(String(100))
     addrest = Column(String(100))
     phone = Column(String(20))
-    product = relationship('Product', back_populates='orders', lazy=True) 
-    user = relationship('User', back_populates='orders', lazy=True) 
-    def show_product(self):
-        
-        return {
-            "id": self.id,
-            
-        }
-    def show_user(self):
-        
-        return {
-            "id": self.id,
-            "user_id": self.user_id,
-            
-        }
+    total_price = Column(Integer, nullable=False)
+    
     def to_dict(self):
-        in4p = self.product
-        in4u = self.user
         return {
-            "id": self.id,
-            "user_id": self.user_id,
-            "product_id": self.product_id,
-            "ppp": in4p.price,  
-            "quantity": self.p_quantity,
-            "stock": in4p.stock,
-
-            "recipient": self.recipient,
-            "addrest": self.addrest,
-            "phone": self.phone,
-            "method": self.method,
-            "rank": in4u.rank(),
-
-            "method": self.method,
-            "orderdate": self.orderdate,
-            "duedate": self.duedate
+           'id' : self.id,
+           'orders': self.orders,
+           'orderdate' : self.orderdate,
+           'method' : self.method,
+           'status': self.status,
+           'recipient': self.recipient,
+           'addrest'  : self.addrest,
+           'phone'  : self.phone,
+           'total_price': self.total_price
         }
