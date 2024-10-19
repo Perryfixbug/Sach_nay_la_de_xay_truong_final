@@ -24,8 +24,8 @@ class Bill_Option:
             return jsonify("error" + str(e)), 500
     def add_bill(self):
         try:
-            if not self.user:
-                return jsonify("Ban khong the thanh toan neu khong dang nhap"), 404
+            # if not self.user:
+            #     return jsonify("Ban khong the thanh toan neu khong dang nhap"), 404
             data = request.get_json()
             if not data:
                 return jsonify("Dữ liệu không hợp lệ"), 400

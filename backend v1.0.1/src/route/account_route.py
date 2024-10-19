@@ -44,7 +44,7 @@ def handle_get_profile():
     uid = session.get('uid')  # Lấy uid từ session
     print("Session hiện tại:", session)  # Debug giá trị session
     if not uid:
-        uid = -1
+        uid = 0
     user_info = current_app.config['AccOption'].profile(uid)
     return user_info
 
