@@ -1,5 +1,4 @@
-from flask import request, jsonify, Blueprint, current_app, session
-
+from flask import request, jsonify, Blueprint, current_app,session
 
 cart_route = Blueprint('cart_route', __name__)
 
@@ -8,7 +7,6 @@ cart_route = Blueprint('cart_route', __name__)
 def Cartpage(product_id):
     if session.get('uid') is None:
         current_app.config['AccOption'].create_guest()
-        
     current_app.config['cartOption'].get_usercart()
     if request.method == 'GET':
         return current_app.config['cartOption'].get_Cart()

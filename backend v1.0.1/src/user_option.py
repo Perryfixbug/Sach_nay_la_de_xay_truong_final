@@ -162,3 +162,19 @@ class User_option:
     def logout(self):
         session.pop('user_id', None)  # Xóa user_id khỏi session
         return jsonify("Đăng xuất thành công"), 200
+    def create_guest(self):
+        user = User.query.get(0)
+        if user:
+            self.db.session.delete(user)
+            self.db.session.commit() 
+        user = User(
+            id = 0,
+            username = 'Guest',
+            password =  bcrypt.hashpw('Taikhoankhach'.encode('utf-8'), bcrypt.gensalt()),
+            img='default_user.jpg',  # Hình ảnh mặc định
+            email = '',
+            phone = ''
+        )
+        self.db.session.add(user)
+        self.db.session.commit()
+
