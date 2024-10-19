@@ -2,6 +2,7 @@ import React from 'react'
 import { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { getCartItems } from '../components/CartAPI'
+import { getUserData } from '../components/AccountAPI'
 
 export const DataContext = createContext()
 
@@ -9,7 +10,7 @@ const DataProvider = ({children}) => {
   
   const [products, setProducts] = useState([])
   const [cartItems, setCartItems] = useState([])
-  const [accounts, setAccounts] = useState([])
+  const [userData, setUserData] = useState([])
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5000/product")
@@ -19,18 +20,21 @@ const DataProvider = ({children}) => {
       })
   },[])
 
-  // useEffect(()=>{
-  //   fetchAccount()
-  // }, [])
+  useEffect(()=>{
+    
+  const fetchAccount = async () => {
+    axios.defaults.withCredentials = true;
+    const response = await axios.get('http://127.0.0.1:5000/account')
+    setUserData(response.data)
+  };
 
-  // const fetchAccount = async() =>{
-  //   const res = await axios.get('http://localhost:8000/acount');
-  //   setAccounts(res.data)
-  // }
+    fetchAccount()
+  }, [])
+
 
   useEffect(()=>{
     const fetchCart = async()=>{
-      const response = await getCartItems()
+      const response = await axios.get('http://127.0.0.1:5000/cart')
       setCartItems(response.data)
     }
     
@@ -39,7 +43,7 @@ const DataProvider = ({children}) => {
   
   
   return (
-    <DataContext.Provider value={[products, accounts, cartItems]}>
+    <DataContext.Provider value={[products, userData, cartItems]}>
       {children}
     </DataContext.Provider>
   )

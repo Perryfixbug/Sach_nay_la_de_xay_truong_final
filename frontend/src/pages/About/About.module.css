@@ -1,0 +1,9 @@
+.background{
+    width: 100vw;
+    height: 90vh;
+    background-image: url(../../background/Screenshot\ 2024-10-14\ 103849.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-color: blue; */
+}

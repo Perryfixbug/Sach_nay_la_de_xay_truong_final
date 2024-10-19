@@ -1,5 +1,5 @@
-from flask import jsonify, request
-from model import Bill
+from flask import jsonify, request,session
+from model import Bill, Product
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 import re
@@ -9,45 +9,59 @@ class Bill_Option:
         self.db = db
         self.status = 4
         self.user = 0
-    def get_user(self, u_id):
-        self.user = u_id
-    def get_bill(self, id = None):
+    def get_user(self):
+        if not session.get('uid'):
+            self.user = 0
+        else: self.user = str(session['uid'])
+        print(self.user)
+    def get_bill(self):
         try:
-            bill = Bill.query
-            if id:
-                bill = bill.get(id)
-            elif self.status < 3:
-                bill = bill.filter(Bill.status.__eq__(self.status))
-            
-            orlist = bill.all()
+            orlist = Bill.query.all()
             if not len(orlist):
-                return jsonify('Không tìm thấy đơn hàng nào theo yêu cầu') 
+                return jsonify('Không tìm thấy đơn hàng nào theo yêu cầu'), 404
             return jsonify([o.to_dict() for o in orlist])
         except Exception as e:
-            return jsonify({"error": str(e)}), 500
+            return jsonify("error" + str(e)), 500
     def add_bill(self):
         try:
             if not self.user:
-                return jsonify('Bạn chưa đăng nhập tài khoản'),400
+                return jsonify("Ban khong the thanh toan neu khong dang nhap"), 404
             data = request.get_json()
-            if not data: 
-                return jsonify({"error": "Invalid input"}), 400
+            if not data:
+                return jsonify("Dữ liệu không hợp lệ"), 400
+
+            # Kiểm tra các trường bắt buộc
             if not data.get('phone'):
-                return jsonify('Bạn cần cung cấp thêm số điện thoại'), 400
-            if not data.get('address') :
-                return jsonify('Bạn cần cung cấp thêm địa chỉ nhận hàng'),400
-            if not data.get('recipient'): 
-                return jsonify('Bạn thiếu tên người nhận hàng'),400
-            bill = Bill(    recipient = data['recipient'],
-                            phone = data['phone'],
-                            address = data['address'],
-                            orders = data['orders'],
-                            total_price = int(data['total_price']),
-                            user_id = self.user
-                           )
+                return jsonify(" Bạn cần cung cấp thêm số điện thoại"), 400
+            if not data.get('address'):
+                return jsonify(" Bạn cần cung cấp thêm địa chỉ nhận hàng"), 400
+            if not data.get('recipient'):
+                return jsonify(" Bạn thiếu tên người nhận hàng"), 400
+
+            # Kiểm tra danh sách sản phẩm (orders)
+            if not data.get('orders'):
+                return jsonify({"Danh sách sản phẩm không được để trống"}), 400
+            if not data.get("payment_method"):
+                data["payment_method"] = 'COD'
+            
+            # Tạo đối tượng Bill
+            bill = Bill(
+                recipient=data['recipient'],
+                phone=data['phone'],
+                address=data['address'],
+                orders=data['orders'], 
+                total_price=int(data['total_price']),
+                method = data["payment_method"],
+                user_id=self.user  # Sử dụng user_id từ phiên đăng nhập
+            )
+
+            # Lưu vào cơ sở dữ liệu
             self.db.session.add(bill)
             self.db.session.commit()
-            return jsonify('Đã thêm một đơn hàng mới! '), 200
-                
+
+            # Trả về phản hồi thành công
+            return jsonify(" Đã thêm một đơn hàng mới!"), 200
+
         except Exception as e:
-            return jsonify({"error": str(e)}), 500
+            # Xử lý lỗi và trả về thông báo lỗi
+            return jsonify("error "+ str(e)), 500

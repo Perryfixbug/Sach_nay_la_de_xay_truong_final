@@ -1,6 +1,7 @@
 from flask import jsonify, request, session
 from model import User
 from flask_sqlalchemy import SQLAlchemy
+from image_path import save_image
 from sqlalchemy import Integer, String, Column, ForeignKey, text, inspect
 from datetime import datetime, timedelta
 import bcrypt
@@ -115,25 +116,40 @@ class User_option:
         return str(user.id), 200
 
     def update_user(self):
-        username = request.form.get('username')
-        password = request.form.get('password')
-        birthday = request.form.get('birthday')
-        gender = request.form.get('gender')
-        data = request.get_json()
-        user = User.query.get(data['id'])
-        if user:
-            if username:
-                user.username = username
-            if password:
-                user.password = password
-            if birthday:
-                user.birthday = birthday
-            if gender:
-                user.gender = gender
+        try:
+            data = request.get_json()
+            if not data:
+                return jsonify("Invalid input"), 400
+            user = User.query.get(data.get('id'))
+
+            # Cập nhật các trường khác
+            if data.get('username'):
+                user.username = data['username']
+            if data.get('birthday'):
+                user.birthday = data['birthday']
+            if data.get('gender'):
+                user.gender = data['gender']
+            if data.get('email'):
+                user.email = data['email']
+            if data.get('phone'):
+                user.phone = data['phone']
+            if data.get('password'):
+                user.password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt())
+            # Lấy ảnh đại diện từ request
+            if 'img' in request.files:
+                avt = request.files['img']
+                success, result = save_image(file=avt, endpoint="user_avt")
+                if success:
+                    user.img = avt.filename  
+                else:
+                    return jsonify(result),401
+
+            # Lưu các thay đổi vào cơ sở dữ liệu
             self.db.session.commit()
-            return jsonify('Đã cập nhật thay đổi của bạn')
-        else:
-            return jsonify('Người dùng không tồn tại')
+            return jsonify("Người dùng đã được cập nhập thông tin"), 200
+        except Exception as e:
+            self.db.session.rollback()
+            return jsonify(str(e)), 500
         
     def profile(self, user_id=None):
         if not user_id:

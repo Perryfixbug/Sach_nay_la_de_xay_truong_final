@@ -12,7 +12,7 @@ class Product(db.Model):
     detail = Column(String(200), nullable=True)
     category = Column(String(50), nullable=False)
     stock = Column(Integer, default=1)
-    #isPopular = Column(Boolean, default=False)
+    isPopular = Column(Boolean, default=False)
     pcarts = relationship('PCart', back_populates='product', lazy=True)
     def to_dict(self):
         return {
@@ -23,8 +23,8 @@ class Product(db.Model):
             'author': self.author,
             'detail': self.detail,
             'category': self.category,
-            'stock': self.stock
-            #'isPopular': self.isPopular
+            'stock': self.stock,
+            'isPopular': self.isPopular
         }
 
 class PCart(db.Model):
@@ -62,6 +62,7 @@ class User(db.Model):
     gender = Column(String(10), default='None')
     purchased = Column(Integer, nullable=False, default=0)
     donations = Column(Integer, nullable=False, default=0)
+    locate = Column(String(100), nullable=True)
     role = Column(Integer, nullable=False, default=0)  # 0 is user, 1 is admin
     def rank(self):
         if self.point > 5000:
@@ -94,10 +95,10 @@ class Bill(db.Model):
     user_id = Column(Integer, nullable= False)
     orders = Column(String(300), nullable=False)
     orderdate = Column(String(20), default=str(datetime.today().date()))
-    method = Column(String(20), default='truc tiep') 
+    method = Column(String(20), default='COD') 
     status = Column(Integer, default=0)  # 0: not received, 1: received, 2: overdue
     recipient = Column(String(100))
-    addrest = Column(String(100))
+    address = Column(String(100))
     phone = Column(String(20))
     total_price = Column(Integer, nullable=False)
     
@@ -109,7 +110,7 @@ class Bill(db.Model):
            'method' : self.method,
            'status': self.status,
            'recipient': self.recipient,
-           'addrest'  : self.addrest,
+           'address'  : self.address,
            'phone'  : self.phone,
            'total_price': self.total_price
         }

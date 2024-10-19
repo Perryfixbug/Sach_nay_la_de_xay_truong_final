@@ -26,3 +26,22 @@ export const loginUser = async (email, password) => {
     return { error: error.response.data }; // Trả về thông báo lỗi
   }
 };
+
+// Lấy thông tin người dùng từ localStorage
+export const getUserData = async () => {
+  axios.defaults.withCredentials = true;
+  try {
+    const response = await axios.get(API_URL);    //await đợi đến khi response được return mới thực hiện tiếp
+    return response.data;
+  } catch (error) {
+    console.error('Error getting user data:', error);
+    return null; // Trả về null nếu không có thông tin người dùng
+  }
+};
+
+// Đăng xuất (xoá thông tin người dùng và token khỏi localStorage)
+export const logoutUser = () => {
+  localStorage.removeItem('access_token'); // Xoá token
+  localStorage.removeItem('user'); // Xoá thông tin người dùng
+  console.log('User logged out successfully');
+};

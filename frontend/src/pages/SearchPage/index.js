@@ -5,15 +5,12 @@ import { assets } from '../../assets/assets'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import Title from '../../components/Title'
+import Menu from '../../components/Menu'
 
 const SearchPage = () => {
-    
-    const [heart, setHeart] = useState(false)
+
     const [value, setValue] = useState('')
 
-    const handleClickHeart = () => {
-        setHeart(!heart)
-    }
     return (
         <motion.div
             initial={{x: -100, opacity: 0}}
@@ -32,11 +29,7 @@ const SearchPage = () => {
                     value={value}
                     onChange={(e)=>setValue(e.target.value)}
                 />
-                <img 
-                    src={heart ? assets.heart_accent : assets.heart_black}
-                    onClick={()=>handleClickHeart()}
-                    
-                />
+                <Menu />
                 {/* <img 
                     src={assets.back_page} 
                     onClick={()=>navigate(-1)}

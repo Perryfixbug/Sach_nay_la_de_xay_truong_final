@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Validation.module.css'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx'
 import BackTo from '../../components/BackTo'
 import Title from '../../components/Title'
@@ -8,6 +9,7 @@ import { signupUser, loginUser } from '../../components/AccountAPI'; // Import A
 
 const Validation = () => {
     const [type, setType] = useState('Login')
+    const navigate = useNavigate();
 
     const Form = {
         Login(){
@@ -18,10 +20,15 @@ const Validation = () => {
                 e.preventDefault();
                 const response = await loginUser(email, password); // Gửi dữ liệu tới API login
                 if (response.error) {
-                alert(response.error); // Hiển thị lỗi nếu có
+                    alert(response.error); // Hiển thị lỗi nếu có
                 } else {
-                alert('Đăng nhập thành công');
-                // Lưu token hoặc thực hiện hành động khác nếu cần
+                    alert(response)
+                    // Lưu thông tin người dùng và token vào localStorage (hoặc sessionStorage)
+                    localStorage.setItem('mess', JSON.stringify(response)); // Giả sử response chứa thông tin người dùng
+                    console.log(localStorage.getItem('mess'));
+                    
+                    // Chuyển hướng người dùng đến trang chủ
+                    navigate('/');
                 }
             };
             return(

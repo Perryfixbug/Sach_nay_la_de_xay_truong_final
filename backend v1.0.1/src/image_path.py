@@ -14,5 +14,5 @@ def save_image(file = None, endpoint = None):
         image_filename = secure_filename(file.filename)
         current_app.config['UPLOAD_FOLDER'] = image_path(endpoint)
         file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], image_filename))
-        return True,image_filename
-    else: return False,"Định dạng ảnh không chính xác!"
+        return True,image_filename,200
+    else: return False,"Định dạng ảnh không chính xác!", 401

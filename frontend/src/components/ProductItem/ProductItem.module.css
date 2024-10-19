@@ -101,6 +101,8 @@
     font-size: 1.2rem;
     border: 3px solid #333;
     box-sizing: border-box;
+    text-align: center;
+    font-weight: 700;
 }
 
 .multiply_icon{
@@ -157,6 +159,6 @@
     }
     .multiply_icon{
         top: 20px;
-        right: 350px;
+        right: 200px;
     }
 }

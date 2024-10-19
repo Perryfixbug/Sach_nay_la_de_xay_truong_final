@@ -12,6 +12,9 @@ import Account from './pages/Account';
 import AnimatedRoutes from './animatedRoutes';
 import Validation from './pages/Validation';
 import About from './pages/About';
+import Category from './pages/Category';
+import ScrollToTop from './components/ScrollToTop';
+import Buy from './pages/Buy';
 
 
 function App() {
@@ -19,6 +22,7 @@ function App() {
   return (
     <AnimatedRoutes>
       <GlobalStyles>
+        <ScrollToTop />
         <Routes location={location} key={location.path}>
           <Route path='/' element={<Home />}></Route>
           <Route path='/cart' element={<Cart />}></Route>
@@ -28,6 +32,9 @@ function App() {
           <Route path='/account' element={<Account />}></Route>
           <Route path='/validation' element={<Validation />}></Route>
           <Route path='/about' element={<About />}></Route>
+          <Route path='/:category' element={<Category />}></Route>
+          <Route path='/search/:category' element={<Category />}></Route>
+          <Route path='/buy' element={<Buy />} ></Route>
         </Routes>
         <TaskBar />
       </GlobalStyles>

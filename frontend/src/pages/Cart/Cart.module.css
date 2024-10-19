@@ -6,4 +6,41 @@
     margin-bottom: 100px;
 }
 
+.product_item{
+    position: relative;
+    & > input{
+        position: absolute;
+        top: 50px;
+        left: 100px;
+        z-index: 1000;
+        width: 12px; /* Chiều rộng mặc định của checkbox */
+        height: 12px; /* Chiều cao mặc định của checkbox */
+        transform: scale(1.5); 
+        cursor: pointer;
+    }
+}
 
+.item_selected{
+    margin: auto;
+    background-color: white;
+    height: 60px;
+    display: flex;
+    width: 80%; 
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    font-size: 1rem;
+    padding: 24px;
+    & > button{
+        font-size: 1rem;
+        padding: 10px;
+        border-radius: 25px;
+        background: #fff;
+        cursor: pointer;
+    }
+    & .checkout_button{
+        background: linear-gradient(to right bottom, #ff5ff2, #7bfe95);
+        width: 200px;
+    }
+}

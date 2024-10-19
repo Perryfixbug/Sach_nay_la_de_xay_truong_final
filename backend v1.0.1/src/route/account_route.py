@@ -6,7 +6,7 @@ acc_route = Blueprint('acc_route', __name__)
 def signup():
     return current_app.config['AccOption'].add_user()
 
-@acc_route.route('/account', methods=['POST', 'DELETE', 'GET'])
+@acc_route.route('/account', methods=['POST', 'DELETE', 'GET', 'PUT'])
 def account():
     if request.method == 'POST':
         return handle_login()
@@ -16,6 +16,9 @@ def account():
 
     if request.method == 'GET':
         return handle_get_profile()
+    
+    if request.method == 'PUT':
+        return current_app.config['AccOption'].update_user()
 
 def handle_login():
     mes, err = current_app.config['AccOption'].login()
@@ -24,8 +27,9 @@ def handle_login():
         session.permanent = True  
         print('Giá trị uid lưu trong session:', session['uid'])
         current_app.config['cartOption'].get_usercart(session['uid'])
-        current_app.config['billOption'].get_user(session['uid'])
-        return jsonify("Đăng nhập thành công"), err
+        current_app.config['cartOption'].delete_guest_cart()
+        current_app.config['billOption'].get_user()
+        return 'Đăng nhập thành công', err
     else:
         return jsonify(mes), err
 
@@ -40,15 +44,15 @@ def handle_get_profile():
     uid = session.get('uid')  # Lấy uid từ session
     print("Session hiện tại:", session)  # Debug giá trị session
     if not uid:
-        return jsonify("Vui lòng đăng nhập để truy cập hồ sơ của bạn!"), 401
+        uid = -1
     user_info = current_app.config['AccOption'].profile(uid)
     return user_info
 
 
-@acc_route.route('/account/logout', methods=['GET'])
+@acc_route.route('/account/logout', methods=['POST'])
 def logout():
     # Xóa uid khỏi session khi đăng xuất
-    session.pop('uid', None)  # Xóa uid từ session
+    session['uid'] = 0  # Xóa uid từ session
     return jsonify("Đăng xuất thành công")
 
 @acc_route.route('/test/g_session', methods=['GET'])

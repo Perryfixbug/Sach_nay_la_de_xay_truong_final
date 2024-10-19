@@ -28,14 +28,13 @@ def create_app():
     app.config['SECRET_KEY'] = '8SIAs98h9sd9198gs*^G^@hs'  # Key bí mật
     app.config['SESSION_TYPE'] = 'filesystem'  # Hoặc 'redis', 'memcached', v.v.
     app.config['SESSION_PERMANENT'] = True  # Không lưu session vĩnh viễn
-    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)  # Thời gian sống của session
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)  # Thời gian sống của session
     # Cấu hình session cookie
-    app.config['SESSION_COOKIE_SECURE'] = False   # Nếu không dùng HTTPS, hãy để False
+    app.config['SESSION_COOKIE_SECURE'] = True   # Nếu không dùng HTTPS, hãy để False
     app.config['SESSION_COOKIE_HTTPONLY'] = True  # Chỉ cho phép truy cập session qua HTTP, không qua JavaScript
     app.config['SESSION_COOKIE_SAMESITE'] = 'None'  # Cấu hình chính sách cross-site
     app.config['SESSION_UID'] = 0
     Session(app)  # Khởi tạo session
-
     #Dang ky cac BluePrint
     app.config['Prod'] = Prod(db = db)
     app.config['cartOption'] = CartOption(db=db, engine=engine)
@@ -63,5 +62,6 @@ if __name__ == '__main__':
     app = create_app()
     with app.app_context():
         db.create_all()
+        app.config['cartOption'].delete_guest_cart()
     CORS(app, supports_credentials=True)
     app.run(debug= True, port= 5000)

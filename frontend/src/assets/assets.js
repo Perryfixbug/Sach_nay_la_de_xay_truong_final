@@ -33,6 +33,7 @@ import heart_black from './heart-icon.png'
 import search_list_black from './search_list_black.png'
 import search_list_accent from './search_list_accent.png'
 import more_accent from './more_accent.png'
+import location_accent from './location_accent.png'
 
 export const assets = {
     nav_icon,
@@ -68,5 +69,6 @@ export const assets = {
     heart_accent,
     search_list_black,
     search_list_accent,
-    more_accent
+    more_accent,
+    location_accent
 }

@@ -39,6 +39,8 @@
     font-size: 1.8rem;
     border: 3px solid #333;
     box-sizing: border-box;
+    text-align: center;
+    font-weight: 700;
 }
 
 .add_cart_button{
@@ -49,6 +51,7 @@
     border: 3px solid #333;
     box-sizing: border-box;
     background: #f7f7f7;
+    cursor: pointer;
 }
 
 .detail{
