@@ -56,6 +56,7 @@ const Account = () => {
       localStorage.removeItem('mess');
       localStorage.removeItem('access_token');
       navigate('/validation');
+      window.location.reload();
     } catch (error) {
       console.error('Failed to log out:', error);
     }
