@@ -58,7 +58,7 @@ const Buy = () => {
       }
     } catch (error) {
       console.error('Lỗi đặt hàng:', error);
-      alert('Đã xảy ra lỗi khi đặt hàng. Vui lòng thử lại.');
+      alert(error.response.data || 'Đã xảy ra lỗi')
     }
 };
 
@@ -115,9 +115,9 @@ const Buy = () => {
             </>
           ) : (
             <>
-              <p>{userData.username}</p>
-              <p>{userData.phone}</p>
-              <p>{userData.location}</p>
+              <p>{userData.username || 'Tên người nhận'}</p>
+              <p>{userData.phone || 'Số điện thoại'}</p>
+              <p>{userData.location || 'Địa chỉ nhận hàng'}</p>
               <button onClick={handleChangeInfo}>Thay đổi</button>
             </>
           )}
