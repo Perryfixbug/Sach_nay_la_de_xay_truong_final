@@ -21,7 +21,7 @@ def create_app():
     app = Flask(__name__)
 
     # Database configuration
-    db_uri = os.getenv('DATABASE_URL', 'sqlite:///user.db')  # Dùng biến môi trường hoặc fallback về SQLite
+    db_uri = os.getenv('DATABASE_URL', 'sqlite:///user (1).db')  # Dùng biến môi trường hoặc fallback về SQLite
     app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
