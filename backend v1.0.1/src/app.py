@@ -28,7 +28,7 @@ def create_app():
     engine = create_engine(db_uri)
 
     # Session configuration
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default-secret-key')  # Dùng biến môi trường cho SECRET_KEY
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', '392hjsaijqsd%^$huddq1')  # Dùng biến môi trường cho SECRET_KEY
     app.config['SESSION_TYPE'] = os.getenv('SESSION_TYPE', 'filesystem')  # Sử dụng kiểu session từ biến môi trường
     app.config['SESSION_PERMANENT'] = True
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
