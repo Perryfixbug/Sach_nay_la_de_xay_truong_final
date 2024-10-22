@@ -151,13 +151,12 @@ class User_option:
             self.db.session.rollback()
             return jsonify(str(e)), 500
         
-    def profile(self, user_id=None):
-        if not user_id:
-            return jsonify("Hãy chỉ rõ người dùng"), 404
+    def profile(self, user_id=0):
         user = User.query.get(user_id)
+        print(user_id)
         if not user:
             return jsonify("Không tìm thấy người dùng")
-        return jsonify(user.to_dict()), 200  # Trả về thông tin người dùng
+        return jsonify(user.to_dict()), 200
 
     def logout(self):
         session.pop('user_id', None)  # Xóa user_id khỏi session

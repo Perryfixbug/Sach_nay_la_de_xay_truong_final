@@ -48,16 +48,6 @@ def create_app():
     app.register_blueprint(bill_route)
  
     return app
-def drop_tables(db: SQLAlchemy):
-    tables_to_drop = ['p_cart_1', 'p_cart_2', 'p_cart_3', 'p_cart_4', 'p_cart_5', 'p_cart_6']
-    
-    with db.engine.connect() as connection:
-        for table in tables_to_drop:
-            try:
-                connection.execute(text(f"DROP TABLE IF EXISTS {table}"))
-                print(f"Bảng {table} đã được xóa.")
-            except Exception as e:
-                print(f"Lỗi khi xóa bảng {table}: {str(e)}")
 if __name__ == '__main__':
     app = create_app()
     with app.app_context():
