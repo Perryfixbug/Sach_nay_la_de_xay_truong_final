@@ -39,9 +39,6 @@ class CartOption:
 
     def add_Cart(self, product_id=None):
         try:
-            # Nếu giỏ hàng trống và không có uid, không yêu cầu đăng nhập
-            # if not self.userlogin:
-            #     return jsonify('Cần đăng nhập để thêm vào giỏ hàng'),400
             if not product_id:
                 data = request.get_json()
                 if not data or 'productId' not in data:
@@ -61,9 +58,6 @@ class CartOption:
 
     def delete_Cart(self, product_id=None):
         try:
-            # if not self.userlogin:
-            #     return jsonify('Giỏ hàng trống. Bạn không thể xóa sản phẩm khi chưa đăng nhập.'), 400
-            
             if not product_id:
                 data = request.get_json()
                 if not data or 'product_id' not in data:

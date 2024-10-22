@@ -6,13 +6,10 @@ acc_route = Blueprint('acc_route', __name__)
 def signup():
     return current_app.config['AccOption'].add_user()
 
-@acc_route.route('/account', methods=['POST', 'DELETE', 'GET', 'PUT'])
+@acc_route.route('/account', methods=['POST', 'GET', 'PUT'])
 def account():
     if request.method == 'POST':
         return handle_login()
-
-    if request.method == 'DELETE':
-        return handle_delete_user()
 
     if request.method == 'GET':
         return handle_get_profile()
@@ -52,7 +49,7 @@ def handle_get_profile():
 @acc_route.route('/account/logout', methods=['POST'])
 def logout():
     # Xóa uid khỏi session khi đăng xuất
-    session['uid'] = 0  # Xóa uid từ session
+    session['uid'] = 0  
     return jsonify("Đăng xuất thành công")
 
 @acc_route.route('/test/g_session', methods=['GET'])

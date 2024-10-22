@@ -118,24 +118,12 @@ class User_option:
     def update_user(self):
         try:
             data = request.get_json()
-            if not data:
-                return jsonify("Invalid input"), 400
+            if not data:    return jsonify("Invalid input"), 400
             user = User.query.get(data.get('id'))
-
-            # Cập nhật các trường khác
-            if data.get('username'):
-                user.username = data['username']
-            if data.get('birthday'):
-                user.birthday = data['birthday']
-            if data.get('gender'):
-                user.gender = data['gender']
-            if data.get('email'):
-                user.email = data['email']
-            if data.get('phone'):
-                user.phone = data['phone']
+            user.username, user.birthday, user.gender  = data['username'], data['birthday'], data['gender']
+            user.email, user.phone = data['email'], data['phone']
             if data.get('password'):
                 user.password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt())
-            # Lấy ảnh đại diện từ request
             if 'img' in request.files:
                 avt = request.files['img']
                 success, result = save_image(file=avt, endpoint="user_avt")
@@ -143,8 +131,6 @@ class User_option:
                     user.img = avt.filename  
                 else:
                     return jsonify(result),401
-
-            # Lưu các thay đổi vào cơ sở dữ liệu
             self.db.session.commit()
             return jsonify("Người dùng đã được cập nhập thông tin"), 200
         except Exception as e:
@@ -152,8 +138,6 @@ class User_option:
             return jsonify(str(e)), 500
         
     def profile(self, user_id=None):
-        if not user_id:
-            return jsonify("Hãy chỉ rõ người dùng"), 404
         user = User.query.get(user_id)
         if not user:
             return jsonify("Không tìm thấy người dùng")
