@@ -49,9 +49,23 @@ def create_app():
  
     return app
 if __name__ == '__main__':
+<<<<<<< HEAD
     app = create_app()
     with app.app_context():
         db.create_all()
         app.config['cartOption'].delete_guest_cart()
     CORS(app, supports_credentials=True)
     app.run(debug= True, port= 5000)
+
+=======
+    try:
+        app = create_app()
+        with app.app_context():
+            db.create_all()
+            app.config['cartOption'].delete_guest_cart()
+        CORS(app, supports_credentials=True)
+        port = int(os.environ.get("PORT", 5000))
+        app.run(debug=True, port=port)
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+>>>>>>> 696ed761185845eadfcaa993f9fc261e8dac03c6

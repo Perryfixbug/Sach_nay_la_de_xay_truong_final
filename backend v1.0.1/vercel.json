@@ -11,6 +11,14 @@
         "src": "/(.*)",
         "dest": "src/app.py"
       }
+<<<<<<< HEAD
     ]
+=======
+    ],
+    "env": {
+      "FLASK_ENV": "development",
+      "FLASK_DEBUG": "1"
+    }
+>>>>>>> 483f5b081e1fd85aac8b24bebf147c1e24456cba
   }
   

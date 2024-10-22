@@ -24,44 +24,17 @@ class Bill_Option:
             return jsonify("error" + str(e)), 500
     def add_bill(self):
         try:
-            # if not self.user:
-            #     return jsonify("Ban khong the thanh toan neu khong dang nhap"), 404
             data = request.get_json()
             if not data:
                 return jsonify("Dữ liệu không hợp lệ"), 400
-
-            # Kiểm tra các trường bắt buộc
-            if not data.get('phone'):
-                return jsonify(" Bạn cần cung cấp thêm số điện thoại"), 400
-            if not data.get('address'):
-                return jsonify(" Bạn cần cung cấp thêm địa chỉ nhận hàng"), 400
-            if not data.get('recipient'):
-                return jsonify(" Bạn thiếu tên người nhận hàng"), 400
-
-            # Kiểm tra danh sách sản phẩm (orders)
-            if not data.get('orders'):
-                return jsonify({"Danh sách sản phẩm không được để trống"}), 400
-            if not data.get("payment_method"):
-                data["payment_method"] = 'COD'
-            
-            # Tạo đối tượng Bill
+            if not data.get('phone') or not data.get('address') or not data.get('recipient') or  not data.get('orders'):
+                return jsonify(" Bạn cần cung cấp thêm thông tin thanh toán"), 400
             bill = Bill(
-                recipient=data['recipient'],
-                phone=data['phone'],
-                address=data['address'],
-                orders=data['orders'], 
-                total_price=int(data['total_price']),
-                method = data["payment_method"],
-                user_id=self.user  # Sử dụng user_id từ phiên đăng nhập
+                recipient=data['recipient'],phone=data['phone'], address=data['address'],orders=data['orders'],
+                total_price=int(data['total_price']),method = data["payment_method"],user_id=self.user  
             )
-
-            # Lưu vào cơ sở dữ liệu
             self.db.session.add(bill)
             self.db.session.commit()
-
-            # Trả về phản hồi thành công
             return jsonify(" Đã thêm một đơn hàng mới!"), 200
-
         except Exception as e:
-            # Xử lý lỗi và trả về thông báo lỗi
             return jsonify("error "+ str(e)), 500
