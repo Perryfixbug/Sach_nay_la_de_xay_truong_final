@@ -12,6 +12,7 @@ datetime = "*"
 pymysql = "*"
 bcrypt = "*"
 flask-session = "*"
+gunicorn = "*"
 
 [dev-packages]
 

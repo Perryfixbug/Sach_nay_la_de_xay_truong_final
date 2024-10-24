@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Title from '../../components/Title';
 import { motion } from 'framer-motion';
 import { assets } from '../../assets/assets';
@@ -6,6 +6,7 @@ import styles from './Buy.module.css';
 import { DataContext } from '../../context/DataProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 
 const Buy = () => {
   const [a, userData, c] = useContext(DataContext);
@@ -19,6 +20,21 @@ const Buy = () => {
   const [newPhone, setNewPhone] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('COD'); // Mặc định là thanh toán khi nhận hàng
   
+  useEffect(() => {
+    // Kiểm tra xem trang đã được tải lại trước đó hay chưa
+    const hasReloaded = localStorage.getItem('hasReloaded');
+
+    if (!hasReloaded) {
+      const interval = setInterval(() => {
+        // Đặt cờ đánh dấu trang đã được tải lại
+        localStorage.setItem('hasReloaded', 'true');
+        window.location.reload(); // Tự động tải lại trang
+        clearInterval(interval);  // Dừng việc tải lại sau lần đầu tiên
+      }, 1000); // 1 giây
+
+      return () => clearInterval(interval); // Dọn dẹp interval khi component unmount
+    }
+  }, []);
   // Tính tổng giá trị sản phẩm đã chọn
   const totalProductPrice = selectedProducts.reduce((total, product) => {
     return total + (parseFloat(product.price.replace(/\./g, '').replace('đ', '').trim()) || 0)*product.quantity; // Chuyển đổi chuỗi sang số
