@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:5000/account';
+const API_URL = 'https://sach-nay-la-de-xay-truong-api.onrender.com/account';
 
 // Đăng ký người dùng (Signup)
 export const signupUser = async (userData) => {

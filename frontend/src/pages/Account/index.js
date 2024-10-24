@@ -18,7 +18,7 @@ const Account = () => {
       axios.defaults.withCredentials = true;
       const storedUser = localStorage.getItem('mess');
       if (storedUser) {
-        const res = await axios.get('http://127.0.0.1:5000/account');
+        const res = await axios.get('https://sach-nay-la-de-xay-truong-api.onrender.com/account');
         setAccount(res.data);
       }
     };
@@ -40,7 +40,7 @@ const Account = () => {
       console.log(updatedAccount);
       try {
         axios.defaults.withCredentials = true; // Thêm dòng này để cho phép gửi cookie
-        await axios.put('http://127.0.0.1:5000/account', updatedAccount);
+        await axios.put('https://sach-nay-la-de-xay-truong-api.onrender.com/account', updatedAccount);
         
         setAccount(updatedAccount); // Cập nhật state với dữ liệu đã chỉnh sửa
       } catch (error) {
@@ -52,7 +52,7 @@ const Account = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://127.0.0.1:5000/account/logout');
+      await axios.post('https://sach-nay-la-de-xay-truong-api.onrender.com/account/logout');
       localStorage.removeItem('mess');
       localStorage.removeItem('access_token');
       navigate('/validation');

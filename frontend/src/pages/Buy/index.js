@@ -66,7 +66,7 @@ const Buy = () => {
       };
 
       // Gửi yêu cầu POST lên server
-      const response = await axios.post('http://localhost:5000/bill', orderData);
+      const response = await axios.post('https://sach-nay-la-de-xay-truong-api.onrender.com/bill', orderData);
 
       if (response.status === 200) {
         alert('Đặt hàng thành công!');
@@ -153,7 +153,7 @@ const Buy = () => {
             
             return (
               <div key={product.id} className={styles.product_item}>
-                <img src={`http://localhost:5000/product_image/${product.id}`} alt={product.name} />
+                <img src={`https://sach-nay-la-de-xay-truong-api.onrender.com/product_image/${product.id}`} alt={product.name} />
                 <div className={styles.product_name}>{product.name}</div>
                 <div>{product.price} {/* Hiển thị giá nguyên vẹn */}</div>
                 <div>{quantity}</div>

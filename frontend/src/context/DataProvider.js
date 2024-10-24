@@ -13,7 +13,7 @@ const DataProvider = ({children}) => {
   const [userData, setUserData] = useState([])
 
   useEffect(()=>{
-    fetch("http://127.0.0.1:5000/product")
+    fetch("https://sach-nay-la-de-xay-truong-api.onrender.com/product")
       .then(res=>res.json())
       .then(data=>{
         setProducts(data);
@@ -24,7 +24,7 @@ const DataProvider = ({children}) => {
     
   const fetchAccount = async () => {
     axios.defaults.withCredentials = true;
-    const response = await axios.get('http://127.0.0.1:5000/account')
+    const response = await axios.get('https://sach-nay-la-de-xay-truong-api.onrender.com/account')
     setUserData(response.data)
   };
 
@@ -34,7 +34,7 @@ const DataProvider = ({children}) => {
 
   useEffect(()=>{
     const fetchCart = async()=>{
-      const response = await axios.get('http://127.0.0.1:5000/cart')
+      const response = await axios.get('https://sach-nay-la-de-xay-truong-api.onrender.com/cart')
       setCartItems(response.data)
     }
     

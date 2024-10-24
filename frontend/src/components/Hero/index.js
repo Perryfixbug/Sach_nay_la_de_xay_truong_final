@@ -14,7 +14,7 @@ const Hero = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       const cartItems = await getCartItems();
-      setQuantity(cartItems.length);
+      setQuantity(cartItems ? cartItems.length : 0 );
     };
     fetchCartItems();
   }, []);

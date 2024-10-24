@@ -24,7 +24,7 @@ const ProductItem = {
             <motion.div className={clsx(styles.productItems, 'hoverEffect')}>
                 <Link to={`/product/${product.id}`} element={<Product id={product.id} />}>
                     <div>
-                        <div className='d-flex-center'><img src={`http://localhost:5000/product_image/${product.id}`} className={styles.product_img} /></div>
+                        <div className='d-flex-center'><img src={`https://sach-nay-la-de-xay-truong-api.onrender.com/product_image/${product.id}`} className={styles.product_img} /></div>
                         <div className={styles.info}>
                             <div><h2 className={styles.name}>{product.name}</h2></div>
                             <div><h2 className={styles.price}>{product.price}</h2></div>
@@ -53,7 +53,7 @@ const ProductItem = {
         return (
             <Link to={`/product/${product.id}`} element={<Product id={product.id} />} className={clsx(styles.Item)}>
                 <div className={styles.productItem_search}>
-                    <img src={`http://localhost:5000/product_image/${product.id}`} />
+                    <img src={`https://sach-nay-la-de-xay-truong-api.onrender.com/product_image/${product.id}`} />
                     <div className={styles.info}>
                         <h2 className={styles.name}>{product.name}</h2>
                         <h2 className={styles.price}>{`${product.price}đ`}</h2>
@@ -74,7 +74,7 @@ const ProductItem = {
                     className='pos_relative'>
                     <div className={styles.productItem_cart}>
                         <Link to={`/product/${product.id}`} element={<Product id={product.id} />}>
-                            <img src={`http://localhost:5000/product_image/${product.id}`} />
+                            <img src={`https://sach-nay-la-de-xay-truong-api.onrender.com/product_image/${product.id}`} />
                         </Link>
                         <div className={styles.info}>
                             <h2 className={styles.name}>{product.name}</h2>

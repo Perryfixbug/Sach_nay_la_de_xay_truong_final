@@ -23,6 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://sach-nay-la-de-xay-truong-api.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",

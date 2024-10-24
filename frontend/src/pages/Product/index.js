@@ -45,7 +45,7 @@ const Product = () => {
       <BackTo />
       <div className={styles.product_mobile}>
         <div className={styles.productImage}>
-          <img src={`http://localhost:5000/product_image/${item.id}`} alt="#" />
+          <img src={`https://sach-nay-la-de-xay-truong-api.onrender.com/product_image/${item.id}`} alt="#" />
         </div>
 
         <div className={styles.name}>
@@ -79,7 +79,7 @@ const Product = () => {
         {/* Ảnh, tên, giá, nút mua */}
         <div className="d-flex">
           <div className={styles.productImage}>
-            <img src={`http://localhost:5000/product_image/${item.id}`} alt="#" />
+            <img src={`https://sach-nay-la-de-xay-truong-api.onrender.com/product_image/${item.id}`} alt="#" />
           </div>
           <div className={styles.product_desktop_side}>
             <div className={styles.name}>
